@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimTestScript : MonoBehaviour
+public class AnimStateSwitcher : MonoBehaviour
 {
-
     Animator myAnimator;
+    public bool debugOn;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,9 @@ public class AnimTestScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!debugOn)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             myAnimator.SetInteger("State", 1);
