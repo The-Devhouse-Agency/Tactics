@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 162860, guid: 79b5f7af9f02ace449d90422157db2a5, type: 3}
       propertyPath: m_Name
-      value: Goblins_Melee - P2
+      value: Goblins_Melee
       objectReference: {fileID: 0}
     - target: {fileID: 162860, guid: 79b5f7af9f02ace449d90422157db2a5, type: 3}
       propertyPath: m_IsActive
@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6992598041355675182, guid: 79b5f7af9f02ace449d90422157db2a5, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79b5f7af9f02ace449d90422157db2a5, type: 3}
 --- !u!4 &13704498 stripped
@@ -228,11 +232,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 162860, guid: b3fa2fae49eec7c4bac56897cd8cf9bf, type: 3}
       propertyPath: m_Name
-      value: Humans_Ranged - P1
+      value: Humans_Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 162860, guid: b3fa2fae49eec7c4bac56897cd8cf9bf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 487758, guid: b3fa2fae49eec7c4bac56897cd8cf9bf, type: 3}
       propertyPath: m_RootOrder
@@ -277,6 +281,10 @@ PrefabInstance:
     - target: {fileID: 487758, guid: b3fa2fae49eec7c4bac56897cd8cf9bf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486534367476562964, guid: b3fa2fae49eec7c4bac56897cd8cf9bf, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8486534367476562964, guid: b3fa2fae49eec7c4bac56897cd8cf9bf, type: 3}
       propertyPath: movementRange
@@ -395,11 +403,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 162860, guid: b1cde3422c687e148829d6d5a02e2b1a, type: 3}
       propertyPath: m_Name
-      value: Humans_Melee - P1
+      value: Humans_Melee
       objectReference: {fileID: 0}
     - target: {fileID: 162860, guid: b1cde3422c687e148829d6d5a02e2b1a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 487758, guid: b1cde3422c687e148829d6d5a02e2b1a, type: 3}
       propertyPath: m_RootOrder
@@ -444,6 +452,10 @@ PrefabInstance:
     - target: {fileID: 487758, guid: b1cde3422c687e148829d6d5a02e2b1a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184986439109461282, guid: b1cde3422c687e148829d6d5a02e2b1a, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1cde3422c687e148829d6d5a02e2b1a, type: 3}
@@ -618,11 +630,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 162860, guid: 8e9301e57de24304b86ce1620c72cf8d, type: 3}
       propertyPath: m_Name
-      value: Goblins_Ranged - P2
+      value: Goblins_Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 162860, guid: 8e9301e57de24304b86ce1620c72cf8d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 487758, guid: 8e9301e57de24304b86ce1620c72cf8d, type: 3}
       propertyPath: m_RootOrder
@@ -667,6 +679,10 @@ PrefabInstance:
     - target: {fileID: 487758, guid: 8e9301e57de24304b86ce1620c72cf8d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422062008367727622, guid: 8e9301e57de24304b86ce1620c72cf8d, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e9301e57de24304b86ce1620c72cf8d, type: 3}
