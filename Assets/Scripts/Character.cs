@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Linq;
 
 public abstract class Character : MonoBehaviour
 {
@@ -23,6 +24,14 @@ public abstract class Character : MonoBehaviour
     private void Start()
     {
         AssignStats(maxHealth, currentHealth, movementRange, attackRange, attackDamage, portrait);
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+            HighlightMovement();
+
+        if (Input.GetKeyDown(KeyCode.Q))
+            HighlightAttackRange();
     }
 
     /// <summary>
@@ -49,12 +58,95 @@ public abstract class Character : MonoBehaviour
 
     public void HighlightMovement()
     {
+        List<Vector2> possiblePositions = new List<Vector2>();
 
+        for (int numberOfTilesToMove = 0; numberOfTilesToMove <= MovementRange; numberOfTilesToMove++)
+        {
+            possiblePositions.Add(new Vector2(transform.position.x + numberOfTilesToMove, transform.position.z));
+            possiblePositions.Add(new Vector2(transform.position.x - numberOfTilesToMove, transform.position.z));
+
+            for (int numberOfDiagnolTilesToMove = 0; numberOfDiagnolTilesToMove <= MovementRange; numberOfDiagnolTilesToMove++)
+            {
+                possiblePositions.Add(new Vector2(transform.position.x + numberOfTilesToMove, transform.position.z + numberOfDiagnolTilesToMove));
+                possiblePositions.Add(new Vector2(transform.position.x - numberOfTilesToMove, transform.position.z - numberOfDiagnolTilesToMove));
+
+                possiblePositions.Add(new Vector2(transform.position.x + numberOfTilesToMove, transform.position.z + numberOfDiagnolTilesToMove));
+                possiblePositions.Add(new Vector2(transform.position.x - numberOfTilesToMove, transform.position.z - numberOfDiagnolTilesToMove));
+
+                possiblePositions.Add(new Vector2(transform.position.x - numberOfTilesToMove, transform.position.z + numberOfDiagnolTilesToMove));
+                possiblePositions.Add(new Vector2(transform.position.x + numberOfTilesToMove, transform.position.z - numberOfDiagnolTilesToMove));
+            }
+        }
+
+        for (int numberOfTilesToMove = 0; numberOfTilesToMove <= MovementRange; numberOfTilesToMove++)
+        {
+            possiblePositions.Add(new Vector2(transform.position.x, transform.position.z + numberOfTilesToMove));
+            possiblePositions.Add(new Vector2(transform.position.x, transform.position.z - numberOfTilesToMove));
+
+            for (int numberOfDiagnolTilesToMove = 0; numberOfDiagnolTilesToMove <= MovementRange; numberOfDiagnolTilesToMove++)
+            {
+                possiblePositions.Add(new Vector2(transform.position.x + numberOfDiagnolTilesToMove, transform.position.z + numberOfTilesToMove));
+                possiblePositions.Add(new Vector2(transform.position.x - numberOfDiagnolTilesToMove, transform.position.z - numberOfTilesToMove));
+
+                possiblePositions.Add(new Vector2(transform.position.x + numberOfDiagnolTilesToMove, transform.position.z - numberOfTilesToMove));
+                possiblePositions.Add(new Vector2(transform.position.x - numberOfDiagnolTilesToMove, transform.position.z + numberOfTilesToMove));
+
+                possiblePositions.Add(new Vector2(transform.position.x - numberOfDiagnolTilesToMove, transform.position.z + numberOfTilesToMove));
+                possiblePositions.Add(new Vector2(transform.position.x + numberOfDiagnolTilesToMove, transform.position.z - numberOfTilesToMove));
+            }
+        }
+
+        List<Vector2> finalPossiblePositions = possiblePositions.Distinct().ToList();
+
+        foreach (var value in finalPossiblePositions)
+        {
+            Debug.Log("Points: " + value);
+        }
+
+        foreach (var pos in finalPossiblePositions)
+        {
+            if (pos.x < 0 || pos.x >= LevelGenerator.Instance.gridSize)
+                continue;
+
+            if (pos.y < 0 || pos.y >= LevelGenerator.Instance.gridSize)
+                continue;
+
+            var tile = LevelGenerator.Instance.floorGridTiles[(int)pos.x, (int)pos.y];
+            tile.IsHighLighting = true;
+            tile.TurnOnMovementHighlighting();
+        }
     }
 
     public void HighlightAttackRange()
     {
+        List<Vector2> possiblePositions = new List<Vector2>();
 
+        for (int numberOfTilesToMove = 0; numberOfTilesToMove < MovementRange; numberOfTilesToMove++)
+        {
+            possiblePositions.Add(new Vector2(transform.position.x + numberOfTilesToMove, transform.position.z));
+            possiblePositions.Add(new Vector2(transform.position.x - numberOfTilesToMove, transform.position.z));
+        }
+
+        for (int numberOfTilesToMove = 0; numberOfTilesToMove < MovementRange; numberOfTilesToMove++)
+        {
+            possiblePositions.Add(new Vector2(transform.position.x, transform.position.z + numberOfTilesToMove));
+            possiblePositions.Add(new Vector2(transform.position.x, transform.position.z - numberOfTilesToMove));
+        }
+
+        List<Vector2> finalPossiblePositions = possiblePositions.Distinct().ToList();
+
+        foreach (var pos in finalPossiblePositions)
+        {
+            if (pos.x < 0 || pos.x > LevelGenerator.Instance.gridSize - 1)
+                continue;
+
+            if (pos.y < 0 || pos.y > LevelGenerator.Instance.gridSize - 1)
+                continue;
+
+            var tile = LevelGenerator.Instance.floorGridTiles[(int)pos.x, (int)pos.y];
+            tile.IsHighLighting = true;
+            tile.TurnOnAttackHighlighting();
+        }
     }
 
     public void OnMovement(Vector3 targetPosition) => transform.DOMoveX(targetPosition.x, MOVEMENT_ANIM_SPEED).OnComplete(() => transform.DOMoveX(targetPosition.z, MOVEMENT_ANIM_SPEED));
