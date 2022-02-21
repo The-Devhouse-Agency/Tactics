@@ -2815,10 +2815,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6cb5d0e332f79246a069bd13efb08b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  movementRange: 3
-  attackRange: 0
-  attackDamage: 0
+  health: 20
+  movementRange: 5
+  attackRange: 3
+  attackDamage: 6
+  portrait: {fileID: 21300000, guid: 53ffae4dd2202a04a93005acf7735c0e, type: 3}
 --- !u!136 &-2953656860174644135
 CapsuleCollider:
   m_ObjectHideFlags: 0
