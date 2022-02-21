@@ -13,7 +13,6 @@ public class LevelGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        floorGridTiles = new Tile[gridSize, gridSize];
         GenerateWorld();
     }
 
@@ -28,6 +27,8 @@ public class LevelGenerator : MonoBehaviour
 
     void GenerateWorld()
     {
+        floorGridTiles = new Tile[gridSize, gridSize];
+
         foreach (Transform child in gridHolder.transform)
             Destroy(child.gameObject);
 
@@ -39,5 +40,10 @@ public class LevelGenerator : MonoBehaviour
                 floorGridTiles[i, j] = newSquare2;
             }
         }
+    }
+
+    void SpawnCharacter()
+    {
+
     }
 }
