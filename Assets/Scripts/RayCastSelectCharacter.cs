@@ -29,7 +29,7 @@ public class RayCastSelectCharacter : MonoBehaviour
                     case "Goblins_Melee":
                         print("DAS");
                         break;
-                    case "Humans_Ranged":
+                    case "Humans_Melee":
                         print("DAS");
                         break;
                     case "Humans_Ranged":

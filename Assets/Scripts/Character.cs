@@ -6,7 +6,7 @@ using DG.Tweening;
 public abstract class Character : MonoBehaviour
 {
     [SerializeField] int health, movementRange, attackRange, attackDamage;
-
+    [SerializeField] Sprite portrait;
     const float MOVEMENT_ANIM_SPEED = 2;
 
     public int Health { get; set; }
