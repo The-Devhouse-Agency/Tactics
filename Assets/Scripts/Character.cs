@@ -60,6 +60,8 @@ public abstract class Character : MonoBehaviour
 
     public void HighlightMovement(bool isTurningOffHighLighting = false)
     {
+        if (HasMoved) { return; }
+
         List<Vector2> possiblePositions = new List<Vector2>();
 
         for (int numberOfTilesToMove = 0; numberOfTilesToMove <= MovementRange; numberOfTilesToMove++)
@@ -125,6 +127,8 @@ public abstract class Character : MonoBehaviour
 
     public void HighlightAttackRange(bool isTurningOffHighLighting = false)
     {
+        if (HasAttacked) { return; }
+
         List<Vector2> possiblePositions = new List<Vector2>();
 
         for (int numberOfTilesToMove = 0; numberOfTilesToMove < MovementRange; numberOfTilesToMove++)
@@ -162,5 +166,14 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    public void Move(Vector3 targetPosition) => transform.DOMoveX(targetPosition.x, MOVEMENT_ANIM_SPEED).OnComplete(() => transform.DOMoveX(targetPosition.z, MOVEMENT_ANIM_SPEED));
+    public void Move(Vector3 targetPosition)
+    {
+        if(!HasMoved)
+        {
+            transform.DOMoveX(targetPosition.x, MOVEMENT_ANIM_SPEED).OnComplete(() => transform.DOMoveZ(targetPosition.z, MOVEMENT_ANIM_SPEED));
+            HighlightMovement(true);
+            HighlightAttackRange(true);
+            HasMoved = true;
+        }
+    }
 }

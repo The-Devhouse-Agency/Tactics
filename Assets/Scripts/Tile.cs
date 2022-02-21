@@ -61,6 +61,10 @@ public class Tile : MonoBehaviour
     public void TurnOffAllHighlighting()
     {
         if(currentFlashingAnimation != null)
+        {
+            attackBlinker.gameObject.SetActive(false);
+            movementBlinker.gameObject.SetActive(false);
             StopCoroutine(currentFlashingAnimation);
+        }
     }
 }

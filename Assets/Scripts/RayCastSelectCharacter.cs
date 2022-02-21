@@ -59,6 +59,7 @@ public class RayCastSelectCharacter : MonoBehaviour
                         selectedPortrait.sprite = hit.transform.gameObject.GetComponent<Archer>().Portrait;
                         healthMeter.fillAmount = hit.transform.gameObject.GetComponent<Archer>().CurrentHealth/ hit.transform.gameObject.GetComponent<Archer>().MaxHealth;
                         selectedName.text = "Goblin Archer";
+                        CurrentCharacterSelected = hit.transform.gameObject.GetComponent<Character>();
                         break;
                     case "Goblins_Melee":
                         if (playerOneTurn)
@@ -66,13 +67,15 @@ public class RayCastSelectCharacter : MonoBehaviour
                         selectedPortrait.sprite = hit.transform.gameObject.GetComponent<Warrior>().Portrait;
                         healthMeter.fillAmount = hit.transform.gameObject.GetComponent<Warrior>().CurrentHealth / hit.transform.gameObject.GetComponent<Warrior>().MaxHealth;
                         selectedName.text = "Goblin Melee";
+                        CurrentCharacterSelected = hit.transform.gameObject.GetComponent<Character>();
                         break;
                     case "Humans_Melee":
                         if (!playerOneTurn)
                             return;
                         selectedPortrait.sprite = hit.transform.gameObject.GetComponent<Warrior>().Portrait;
                         healthMeter.fillAmount = hit.transform.gameObject.GetComponent<Warrior>().CurrentHealth / hit.transform.gameObject.GetComponent<Warrior>().MaxHealth;
-                        selectedName.text = "Human Melee"; 
+                        selectedName.text = "Human Melee";
+                        CurrentCharacterSelected = hit.transform.gameObject.GetComponent<Character>();
                         break;
                     case "Humans_Ranged":
                         if (!playerOneTurn)
@@ -81,18 +84,20 @@ public class RayCastSelectCharacter : MonoBehaviour
                         selectedPortrait.sprite = hit.transform.gameObject.GetComponent<Archer>().Portrait;    
                         healthMeter.fillAmount = hit.transform.gameObject.GetComponent<Archer>().CurrentHealth / hit.transform.gameObject.GetComponent<Archer>().MaxHealth;
                         selectedName.text = "Archer";
+                        CurrentCharacterSelected = hit.transform.gameObject.GetComponent<Character>();
                         break;
                     default:
                         break;
                 }
 
-                CurrentCharacterSelected = hit.transform.gameObject.GetComponent<Character>();
+                Debug.Log("asdf " + hit.transform.gameObject.name);
+
 
                 if(hit.collider.GetComponent<Tile>())
                 {
                     if (hit.collider.GetComponent<Tile>().ActionAllowedOnTile)
                     {
-                        Debug.Log("Test: " + hit.collider.GetComponent<Tile>().transform.position);
+                        Debug.Log("Test: " + hit.collider.GetComponent<Tile>().gameObject.name +" " + CurrentCharacterSelected);
                         CurrentCharacterSelected.Move(hit.collider.GetComponent<Tile>().transform.position);
                     }
 
