@@ -71,36 +71,35 @@ public class RayCastSelectCharacter : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 100.0f))
-            {
-                //StartCoroutine(ScaleMe(hit.transform));
-                Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    RaycastHit hit;
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    if (Physics.Raycast(ray, out hit, 100.0f))
+        //    {
+        //        //StartCoroutine(ScaleMe(hit.transform));
+        //        Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
 
-                switch (hit.transform.name)
-                {
-                    case "Goblins_Ranged":
-                        hit.transform.gameObject.GetComponent<Archer>().TakeDamage(5);
-                        break;
-                    case "Goblins_Melee":
-                        print("DAS");
-                        break;
-                    case "Humans_Melee":
-                        print("DAS");
-                        break;
-                    case "Humans_Ranged":
-                        hit.transform.gameObject.GetComponent<Archer>().TakeDamage(5);
-                        print(hit.transform.gameObject.GetComponent<Archer>().CurrentHealth);
-                        print(hit.transform.gameObject.GetComponent<Archer>().MaxHealth);
-                        break;
-                    default:
-                        break;
-                }
+        //        switch (hit.transform.name)
+        //        {
+        //            case "Goblins_Ranged":
+        //                hit.transform.gameObject.GetComponent<Archer>().TakeDamage(5);
+        //                break;
+        //            case "Goblins_Melee":
+        //                print("DAS");
+        //                break;
+        //            case "Humans_Melee":
+        //                print("DAS");
+        //                break;
+        //            case "Humans_Ranged":
+        //                hit.transform.gameObject.GetComponent<Archer>().TakeDamage(5);
+        //                print(hit.transform.gameObject.GetComponent<Archer>().CurrentHealth);
+        //                print(hit.transform.gameObject.GetComponent<Archer>().MaxHealth);
+        //                break;
+        //            default:
+        //                break;
+        //        }
 
-            }
+        //    }
         }
     }
-}
