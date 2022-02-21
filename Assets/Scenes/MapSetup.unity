@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -247,9 +247,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: 10
   floorTilePrefabs:
-  - {fileID: 7863892561221258266, guid: fa7dade53ce036746b7e05f30cb10c2c, type: 3}
-  - {fileID: 7863892561221258266, guid: 77e08fed96521d040becd0bd8d5614fc, type: 3}
-  - {fileID: 7863892561221258266, guid: 5fe5554979d6ac245b97a3c25ec3b553, type: 3}
+  - {fileID: 2929893810579605015, guid: fa7dade53ce036746b7e05f30cb10c2c, type: 3}
+  - {fileID: 2361370131489568952, guid: 77e08fed96521d040becd0bd8d5614fc, type: 3}
+  - {fileID: 9107876407823881070, guid: 5fe5554979d6ac245b97a3c25ec3b553, type: 3}
   gridHolder: {fileID: 1105612993}
 --- !u!4 &1105612995
 Transform:

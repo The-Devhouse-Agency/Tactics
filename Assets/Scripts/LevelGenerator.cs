@@ -5,12 +5,15 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public int gridSize;
-    public GameObject[] floorTilePrefabs;
+    public Tile[] floorTilePrefabs;
     public GameObject gridHolder;
+
+    public Tile[,] floorGridTiles { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
+        floorGridTiles = new Tile[gridSize, gridSize];
         GenerateWorld();
     }
 
@@ -30,10 +33,10 @@ public class LevelGenerator : MonoBehaviour
 
         for (int i = 0; i < gridSize; i++)
         {
-            GameObject newSquare = Instantiate(floorTilePrefabs[Random.RandomRange(0, 3)], new Vector3(i,0,0), Quaternion.identity, gridHolder.transform);
             for (int j = 0; j < gridSize; j++)
             {
-                GameObject newSquare2 = Instantiate(floorTilePrefabs[Random.RandomRange(0, 3)], new Vector3(i, 0, j), Quaternion.identity, gridHolder.transform);
+                Tile newSquare2 = Instantiate(floorTilePrefabs[Random.RandomRange(0, 3)], new Vector3(i, 0, j), Quaternion.identity, gridHolder.transform);
+                floorGridTiles[i, j] = newSquare2;
             }
         }
     }

@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public abstract class Character : MonoBehaviour
 {
     [SerializeField] int health, movementRange, attackRange, attackDamage;
 
+    const float MOVEMENT_ANIM_SPEED = 2;
+
     public int Health { get; set; }
     public int MovementRange { get; set; }
     public int AttackRange { get; set; }
     public int AttackDamage { get; set; }
+
+    public abstract void OnDeath();
+    public abstract void Attack();
 
     private void Start()
     {
@@ -35,4 +41,16 @@ public abstract class Character : MonoBehaviour
     {
         Health -= amountOfDamage;
     }
+
+    public void HighlightMovement()
+    {
+
+    }
+
+    public void HighlightAttackRange()
+    {
+
+    }
+
+    public void OnMovement(Vector3 targetPosition) => transform.DOMoveX(targetPosition.x, MOVEMENT_ANIM_SPEED).OnComplete(() => transform.DOMoveX(targetPosition.z, MOVEMENT_ANIM_SPEED));
 }
