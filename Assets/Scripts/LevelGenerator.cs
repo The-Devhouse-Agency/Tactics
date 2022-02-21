@@ -5,10 +5,25 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public int gridSize;
-    public Tile[] floorTilePrefabs;
+    public List<Tile> floorTilePrefabs;
     public GameObject gridHolder;
 
     public Tile[,] floorGridTiles { get; set; }
+
+    private static LevelGenerator _instance;
+    public static LevelGenerator Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

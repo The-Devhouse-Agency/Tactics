@@ -11,8 +11,10 @@ public class Tile : MonoBehaviour
 
     public bool IsHighLighting { get; set; }
 
-    public void TurnOnHighLighting()
+    public void TurnOnMovementHighlighting()
     {
+        IsHighLighting = false;
+        IsHighLighting = true;
         StartCoroutine(HighLightTile());
         IEnumerator HighLightTile()
         {
@@ -26,4 +28,20 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public void TurnOnAttackHighlighting()
+    {
+        IsHighLighting = false;
+        IsHighLighting = true;
+        StartCoroutine(HighLightTile());
+        IEnumerator HighLightTile()
+        {
+            while (IsHighLighting)
+            {
+                yield return new WaitForSeconds(highlightSpeed);
+                attackBlinker.gameObject.SetActive(!attackBlinker.activeInHierarchy);
+            }
+
+            attackBlinker.gameObject.SetActive(false);
+        }
+    }
 }

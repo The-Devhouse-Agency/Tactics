@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblins_Melee - P2
       objectReference: {fileID: 0}
+    - target: {fileID: 162860, guid: 79b5f7af9f02ace449d90422157db2a5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 487758, guid: 79b5f7af9f02ace449d90422157db2a5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -226,6 +230,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Humans_Ranged - P1
       objectReference: {fileID: 0}
+    - target: {fileID: 162860, guid: b3fa2fae49eec7c4bac56897cd8cf9bf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 487758, guid: b3fa2fae49eec7c4bac56897cd8cf9bf, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -270,6 +278,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8486534367476562964, guid: b3fa2fae49eec7c4bac56897cd8cf9bf, type: 3}
+      propertyPath: movementRange
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3fa2fae49eec7c4bac56897cd8cf9bf, type: 3}
 --- !u!4 &198749657 stripped
@@ -287,6 +299,10 @@ PrefabInstance:
     - target: {fileID: 162860, guid: b1cde3422c687e148829d6d5a02e2b1a, type: 3}
       propertyPath: m_Name
       value: Humans_Melee - P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162860, guid: b1cde3422c687e148829d6d5a02e2b1a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 487758, guid: b1cde3422c687e148829d6d5a02e2b1a, type: 3}
       propertyPath: m_RootOrder
@@ -506,6 +522,10 @@ PrefabInstance:
     - target: {fileID: 162860, guid: 8e9301e57de24304b86ce1620c72cf8d, type: 3}
       propertyPath: m_Name
       value: Goblins_Ranged - P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 162860, guid: 8e9301e57de24304b86ce1620c72cf8d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 487758, guid: 8e9301e57de24304b86ce1620c72cf8d, type: 3}
       propertyPath: m_RootOrder
