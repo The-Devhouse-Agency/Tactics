@@ -5,21 +5,24 @@ using DG.Tweening;
 
 public abstract class Character : MonoBehaviour
 {
-    [SerializeField] int health, movementRange, attackRange, attackDamage;
+    [SerializeField] float maxHealth, currentHealth, movementRange, attackRange, attackDamage;
     [SerializeField] Sprite portrait;
     const float MOVEMENT_ANIM_SPEED = 2;
 
-    public int Health { get; set; }
-    public int MovementRange { get; set; }
-    public int AttackRange { get; set; }
-    public int AttackDamage { get; set; }
+    public float MaxHealth { get; set; }
+    public float CurrentHealth { get; set; }
+    public float MovementRange { get; set; }
+    public float AttackRange { get; set; }
+    public float AttackDamage { get; set; }
+    public Sprite Portrait { get; set; }
+
 
     public abstract void OnDeath();
     public abstract void Attack();
 
     private void Start()
     {
-        AssignStats(health, movementRange, attackRange, attackDamage);
+        AssignStats(maxHealth, currentHealth, movementRange, attackRange, attackDamage, portrait);
     }
 
     /// <summary>
@@ -29,17 +32,19 @@ public abstract class Character : MonoBehaviour
     /// <param name="movementRange"></param>
     /// <param name="attackRange"></param>
     /// <param name="attackDamage"></param>
-    public void AssignStats(int health, int movementRange, int attackRange, int attackDamage)
+    public void AssignStats(float maxHealth, float currentHealth, float movementRange, float attackRange, float attackDamage, Sprite portrait)
     {
-        Health = health;
+        MaxHealth = maxHealth;
+        CurrentHealth = currentHealth;
         MovementRange = movementRange;
         AttackRange = attackRange;
         AttackDamage = attackDamage;
+        Portrait = portrait;
     }
 
-    public void TakeDamage(int amountOfDamage)
+    public void TakeDamage(float amountOfDamage)
     {
-        Health -= amountOfDamage;
+        CurrentHealth -= amountOfDamage;
     }
 
     public void HighlightMovement()
