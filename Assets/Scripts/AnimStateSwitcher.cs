@@ -35,6 +35,10 @@ public class AnimStateSwitcher : MonoBehaviour
         {
             myAnimator.SetInteger("State", 0);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            myAnimator.SetInteger("State", 4);
+        }
     }
 
     public void SetAnimParameter(int value)
