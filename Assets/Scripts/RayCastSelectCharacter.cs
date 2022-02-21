@@ -11,10 +11,21 @@ public class RayCastSelectCharacter : MonoBehaviour
     public TextMeshProUGUI selectedName;
     public bool playerOneTurn = true;
 
-    // Start is called before the first frame update
-    void Start()
+    public Character CurrentCharacterSelected { get; set; }
+
+    private static RayCastSelectCharacter _instance;
+    public static RayCastSelectCharacter Instance { get { return _instance; } }
+
+    private void Awake()
     {
-        
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
     public void EndTurn()
@@ -32,6 +43,13 @@ public class RayCastSelectCharacter : MonoBehaviour
             {
                 //StartCoroutine(ScaleMe(hit.transform));
                 Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
+
+                if (CurrentCharacterSelected)
+                {
+                    CurrentCharacterSelected.HighlightAttackRange(true);
+                    CurrentCharacterSelected.HighlightMovement(true);
+                }
+
 
                 switch (hit.transform.name)
                 {
@@ -67,7 +85,18 @@ public class RayCastSelectCharacter : MonoBehaviour
                     default:
                         break;
                 }
-         
+
+                CurrentCharacterSelected = hit.transform.gameObject.GetComponent<Character>();
+
+                if(hit.collider.GetComponent<Tile>())
+                {
+                    if (hit.collider.GetComponent<Tile>().ActionAllowedOnTile)
+                    {
+                        Debug.Log("Test: " + hit.collider.GetComponent<Tile>().transform.position);
+                        CurrentCharacterSelected.Move(hit.collider.GetComponent<Tile>().transform.position);
+                    }
+
+                }
             }
         }
 

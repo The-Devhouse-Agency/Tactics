@@ -17,6 +17,8 @@ public abstract class Character : MonoBehaviour
     public float AttackDamage { get; set; }
     public Sprite Portrait { get; set; }
 
+    public bool HasMoved { get; set; }
+    public bool HasAttacked { get; set; }
 
     public abstract void OnDeath();
     public abstract void Attack();
@@ -56,7 +58,7 @@ public abstract class Character : MonoBehaviour
         CurrentHealth -= amountOfDamage;
     }
 
-    public void HighlightMovement()
+    public void HighlightMovement(bool isTurningOffHighLighting = false)
     {
         List<Vector2> possiblePositions = new List<Vector2>();
 
@@ -112,12 +114,16 @@ public abstract class Character : MonoBehaviour
                 continue;
 
             var tile = LevelGenerator.Instance.floorGridTiles[(int)pos.x, (int)pos.y];
-            tile.IsHighLighting = true;
-            tile.TurnOnMovementHighlighting();
+            Tile.IsHighLighting = true;
+
+            if(!isTurningOffHighLighting)
+                tile.TurnOnMovementHighlighting();
+            else
+                tile.TurnOffAllHighlighting();
         }
     }
 
-    public void HighlightAttackRange()
+    public void HighlightAttackRange(bool isTurningOffHighLighting = false)
     {
         List<Vector2> possiblePositions = new List<Vector2>();
 
@@ -144,10 +150,17 @@ public abstract class Character : MonoBehaviour
                 continue;
 
             var tile = LevelGenerator.Instance.floorGridTiles[(int)pos.x, (int)pos.y];
-            tile.IsHighLighting = true;
-            tile.TurnOnAttackHighlighting();
+
+            if (!isTurningOffHighLighting)
+            {
+                Tile.IsHighLighting = true;
+                tile.TurnOnAttackHighlighting();
+            }
+            else
+                tile.TurnOffAllHighlighting();
+
         }
     }
 
-    public void OnMovement(Vector3 targetPosition) => transform.DOMoveX(targetPosition.x, MOVEMENT_ANIM_SPEED).OnComplete(() => transform.DOMoveX(targetPosition.z, MOVEMENT_ANIM_SPEED));
+    public void Move(Vector3 targetPosition) => transform.DOMoveX(targetPosition.x, MOVEMENT_ANIM_SPEED).OnComplete(() => transform.DOMoveX(targetPosition.z, MOVEMENT_ANIM_SPEED));
 }

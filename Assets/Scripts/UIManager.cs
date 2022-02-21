@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     public delegate void OnNewState();
     public static event OnNewState onMainMenu, onStartEvent;
 
-    [SerializeField] Button startButton;
+    [SerializeField] Button startButton, attackButton, moveButton, endTurnButton;
 
     private void OnEnable()
     {
@@ -20,15 +20,13 @@ public class UIManager : MonoBehaviour
         
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void ShowPossibleMovement()
     {
-        
+        RayCastSelectCharacter.Instance.CurrentCharacterSelected.HighlightMovement();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowPossibleAttack()
     {
-        
+        RayCastSelectCharacter.Instance.CurrentCharacterSelected.HighlightAttackRange();
     }
 }
