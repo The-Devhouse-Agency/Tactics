@@ -9,11 +9,17 @@ public class RayCastSelectCharacter : MonoBehaviour
     public Image selectedPortrait;
     public Image healthMeter;
     public TextMeshProUGUI selectedName;
+    public bool playerOneTurn = true;
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    public void EndTurn()
+    {
+        playerOneTurn = !playerOneTurn;
     }
 
     void Update()
@@ -30,21 +36,29 @@ public class RayCastSelectCharacter : MonoBehaviour
                 switch (hit.transform.name)
                 {
                     case "Goblins_Ranged":
+                        if (playerOneTurn)
+                            return;
                         selectedPortrait.sprite = hit.transform.gameObject.GetComponent<Archer>().Portrait;
                         healthMeter.fillAmount = hit.transform.gameObject.GetComponent<Archer>().CurrentHealth/ hit.transform.gameObject.GetComponent<Archer>().MaxHealth;
                         selectedName.text = "Goblin Archer";
                         break;
                     case "Goblins_Melee":
+                        if (playerOneTurn)
+                            return;
                         selectedPortrait.sprite = hit.transform.gameObject.GetComponent<Warrior>().Portrait;
                         healthMeter.fillAmount = hit.transform.gameObject.GetComponent<Warrior>().CurrentHealth / hit.transform.gameObject.GetComponent<Warrior>().MaxHealth;
                         selectedName.text = "Goblin Melee";
                         break;
                     case "Humans_Melee":
+                        if (!playerOneTurn)
+                            return;
                         selectedPortrait.sprite = hit.transform.gameObject.GetComponent<Warrior>().Portrait;
                         healthMeter.fillAmount = hit.transform.gameObject.GetComponent<Warrior>().CurrentHealth / hit.transform.gameObject.GetComponent<Warrior>().MaxHealth;
                         selectedName.text = "Human Melee"; 
                         break;
                     case "Humans_Ranged":
+                        if (!playerOneTurn)
+                            return;
                         print(hit.transform.gameObject.GetComponent<Archer>().CurrentHealth);
                         selectedPortrait.sprite = hit.transform.gameObject.GetComponent<Archer>().Portrait;    
                         healthMeter.fillAmount = hit.transform.gameObject.GetComponent<Archer>().CurrentHealth / hit.transform.gameObject.GetComponent<Archer>().MaxHealth;
