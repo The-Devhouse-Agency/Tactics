@@ -34,10 +34,5 @@ public abstract class Character : MonoBehaviour
     public void TakeDamage(int amountOfDamage)
     {
         Health -= amountOfDamage;
-
-        if (Health <= 0)
-            OnDeath();
     }
-
-    public abstract void OnDeath();
 }
