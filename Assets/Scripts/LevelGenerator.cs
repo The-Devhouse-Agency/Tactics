@@ -20,11 +20,17 @@ public class LevelGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GenerateWorld();
+        }
     }
 
     void GenerateWorld()
     {
+        foreach (Transform child in gridHolder.transform)
+            Destroy(child.gameObject);
+
         for (int i = 0; i < gridSize; i++)
         {
             for (int j = 0; j < gridSize; j++)
