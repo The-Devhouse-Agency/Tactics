@@ -125,6 +125,7 @@ public class RayCastSelectCharacter : MonoBehaviour
                     {
                         Debug.Log("Attacked with: " + CurrentCharacterSelected);
                         hit.collider.GetComponent<Character>().TakeDamage(10f); //Use Character Strength
+                        CurrentCharacterSelected.GetComponent<AnimStateSwitcher>().SetAnimParameter(3);
                         CurrentCharacterSelected.HighlightAttackRange(true);
                         CurrentCharacterSelected.HasAttacked = true; //Need to reset on every end of round
                     }

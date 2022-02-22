@@ -11,17 +11,8 @@ public abstract class Character : MonoBehaviour
     const float MOVEMENT_ANIM_SPEED = 2;
 
     public float MaxHealth { get; set; }
-    public float CurrentHealth 
-    {
-        get
-        {
-            return currentHealth;
-        }
-        set
-        {
-            currentHealth -= value;
-        }
-    }
+    public float CurrentHealth { get; set; }
+  
     public float MovementRange { get; set; }
     public float AttackRange { get; set; }
     public float AttackDamage { get; set; }
@@ -68,13 +59,17 @@ public abstract class Character : MonoBehaviour
 
     public void TakeDamage(float amountOfDamage)
     {
-        Debug.Log(gameObject.name + " has taken damage!");
+        GetComponent<AnimStateSwitcher>().SetAnimParameter(2);
+        Debug.Log(gameObject.name + " has taken damage!" + (CurrentHealth - amountOfDamage));
+        print("Current Health: " + CurrentHealth);
+        print("Amount of Damage: " + amountOfDamage);
         HighlightMovement(true);
         HighlightAttackRange(true);
         CurrentHealth -= amountOfDamage;
 
         if (CurrentHealth < 0)
         {
+            GetComponent<AnimStateSwitcher>().SetAnimParameter(4);
             //HAS DIED;
         }
     }
@@ -125,7 +120,7 @@ public abstract class Character : MonoBehaviour
 
         foreach (var value in finalPossiblePositions)
         {
-            Debug.Log("Points: " + value);
+            //Debug.Log("Points: " + value);
         }
 
         foreach (var pos in finalPossiblePositions)
@@ -192,7 +187,8 @@ public abstract class Character : MonoBehaviour
     {
         if(!HasMoved)
         {
-            transform.DOMoveX(targetPosition.x, MOVEMENT_ANIM_SPEED).OnComplete(() => transform.DOMoveZ(targetPosition.z, MOVEMENT_ANIM_SPEED));
+            GetComponent<AnimStateSwitcher>().SetAnimParameter(1);
+            transform.DOMoveX(targetPosition.x, MOVEMENT_ANIM_SPEED).OnComplete(() => transform.DOMoveZ(targetPosition.z, MOVEMENT_ANIM_SPEED).OnComplete(()=> GetComponent<AnimStateSwitcher>().SetAnimParameter(0)));
             HighlightMovement(true);
             HighlightAttackRange(true);
         }
