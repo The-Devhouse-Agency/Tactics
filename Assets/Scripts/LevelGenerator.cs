@@ -51,7 +51,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int j = 0; j < gridSize; j++)
             {
-                Tile newSquare2 = Instantiate(floorTilePrefabs[Random.RandomRange(0, 3)], new Vector3(i, 0, j), Quaternion.identity, gridHolder.transform);
+                Tile newSquare2 = Instantiate(floorTilePrefabs[Random.RandomRange(0, floorTilePrefabs.Count)], new Vector3(i, 0, j), Quaternion.identity, gridHolder.transform);
                 floorGridTiles[i, j] = newSquare2;
             }
         }
