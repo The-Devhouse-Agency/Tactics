@@ -22,11 +22,19 @@ public class UIManager : MonoBehaviour
 
     public void ShowPossibleMovement()
     {
+        if (RayCastSelectCharacter.Instance.CurrentCharacterSelected == null) { return; }
+
+        RayCastSelectCharacter.Instance.IsInMovingAction = true;
+        RayCastSelectCharacter.Instance.IsInAttackAction = false;
         RayCastSelectCharacter.Instance.CurrentCharacterSelected.HighlightMovement();
     }
 
     public void ShowPossibleAttack()
     {
+        if (RayCastSelectCharacter.Instance.CurrentCharacterSelected == null) { return; }
+
+        RayCastSelectCharacter.Instance.IsInAttackAction = true;
+        RayCastSelectCharacter.Instance.IsInMovingAction = false;
         RayCastSelectCharacter.Instance.CurrentCharacterSelected.HighlightAttackRange();
     }
 }

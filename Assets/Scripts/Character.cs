@@ -11,7 +11,17 @@ public abstract class Character : MonoBehaviour
     const float MOVEMENT_ANIM_SPEED = 2;
 
     public float MaxHealth { get; set; }
-    public float CurrentHealth { get; set; }
+    public float CurrentHealth 
+    {
+        get
+        {
+            return currentHealth;
+        }
+        set
+        {
+            currentHealth -= value;
+        }
+    }
     public float MovementRange { get; set; }
     public float AttackRange { get; set; }
     public float AttackDamage { get; set; }
@@ -43,19 +53,30 @@ public abstract class Character : MonoBehaviour
     /// <param name="movementRange"></param>
     /// <param name="attackRange"></param>
     /// <param name="attackDamage"></param>
-    public void AssignStats(float maxHealth, float currentHealth, float movementRange, float attackRange, float attackDamage, Sprite portrait)
+    public void AssignStats(float setMaxHealth, float setCurrentHealth, float setMovementRange, float setAttackRange, float setAttackDamage, Sprite portrait)
     {
-        MaxHealth = maxHealth;
-        CurrentHealth = currentHealth;
-        MovementRange = movementRange;
-        AttackRange = attackRange;
-        AttackDamage = attackDamage;
+        MaxHealth = setMaxHealth;
+        CurrentHealth = setCurrentHealth;
+        MovementRange = setMovementRange;
+        AttackRange = setAttackRange;
+        AttackDamage = setAttackDamage;
         Portrait = portrait;
+
+        maxHealth = setMaxHealth;
+        currentHealth = setCurrentHealth;
     }
 
     public void TakeDamage(float amountOfDamage)
     {
+        Debug.Log(gameObject.name + " has taken damage!");
+        HighlightMovement(true);
+        HighlightAttackRange(true);
         CurrentHealth -= amountOfDamage;
+
+        if (CurrentHealth < 0)
+        {
+            //HAS DIED;
+        }
     }
 
     public void HighlightMovement(bool isTurningOffHighLighting = false)
@@ -155,9 +176,10 @@ public abstract class Character : MonoBehaviour
 
             var tile = LevelGenerator.Instance.floorGridTiles[(int)pos.x, (int)pos.y];
 
+            Tile.IsHighLighting = true;
+
             if (!isTurningOffHighLighting)
             {
-                Tile.IsHighLighting = true;
                 tile.TurnOnAttackHighlighting();
             }
             else
@@ -173,7 +195,6 @@ public abstract class Character : MonoBehaviour
             transform.DOMoveX(targetPosition.x, MOVEMENT_ANIM_SPEED).OnComplete(() => transform.DOMoveZ(targetPosition.z, MOVEMENT_ANIM_SPEED));
             HighlightMovement(true);
             HighlightAttackRange(true);
-            HasMoved = true;
         }
     }
 }
